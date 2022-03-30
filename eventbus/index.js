@@ -31,4 +31,4 @@ app.get("/eventbus/event", (req, resp) => {
   resp.send(events);
 });
 
-app.listen(4005, () => console.log("4005 started"));
+app.listen(4005, () => console.log("listening at port 4005"));
