@@ -35,5 +35,5 @@ app.post("/eventbus/event/listener",(req,resp)=>{
 });
 
 app.listen(4001,()=>{
-   console.log("post servcie running at 4001")
+   console.log("listening at port 4001")
 });

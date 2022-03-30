@@ -25,7 +25,7 @@ build:
           - dest: .
             src: "*.js" # specifing which file to be watched for changes
     - image: us.gcr.io/kubernetes-demo-345511/query
-      context: QueryService # path to find dockerfile
+      context: query # path to find dockerfile
       docker:
         dockerfile: Dockerfile
       sync:
