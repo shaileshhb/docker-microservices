@@ -24,7 +24,7 @@ jobs:
           credentials_json: ${{ secrets.GKE_SA_KEY }}
 
       # Runs a single command using the runners shell
-      - run: cd query && gcloud builds submit --tag us.gcr.io/kubernetes-demo-345511/query #here
+      - run: cd QueryService && gcloud builds submit --tag us.gcr.io/kubernetes-demo-345511/query #here
       - uses: google-github-actions/get-gke-credentials@v0
         with:
           cluster_name: demo-cluster-1
