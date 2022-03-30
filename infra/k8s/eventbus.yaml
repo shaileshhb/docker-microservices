@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eventbus-depl
+  labels:
+    app: eventbus-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eventbus-app
+  template:
+    metadata:
+      name: eventbus-pod
+      labels:
+        app: eventbus-app
+    spec:
+      containers:
+        - name: eventbus-pod
+          image: us.gcr.io/kubernetes-demo-345511/eventbus
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eventbus-serv
+spec:
+  selector:
+    app: eventbus-app
+  ports:
+    - protocol: TCP
+      port: 4005
+      targetPort: 4005

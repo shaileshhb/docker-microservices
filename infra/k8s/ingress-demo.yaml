@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-myservicea
+  annotations:
+    kubernetes.io/ingreess.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+  - host: gposts.com
+    http:
+      paths:
+      - path: /api/v1/blog/post
+        pathType: Prefix
+        backend:
+          service:
+            name: post-serv
+            port:
+              number: 4001 #port number of service
+      - path: /api/v1/blog/post/?(.*)/comment
+        pathType: Prefix
+        backend:
+          service:
+            name: comment-serv
+            port:
+              number: 4002 #port number of service
+      - path: /api/v1/blog/post/query
+        pathType: Prefix
+        backend:
+          service:
+            name: query-serv
+            port:
+              number: 4003 #port number of service
+      - path: /?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: ui-serv
+            port:
+              number: 3000 #port number of service

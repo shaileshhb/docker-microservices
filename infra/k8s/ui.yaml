@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-depl
+  labels:
+    app: ui-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui-app
+  template:
+    metadata:
+      name: ui-pod
+      labels:
+        app: ui-app
+    spec:
+      containers:
+        - name: ui-pod
+          image: us.gcr.io/kubernetes-demo-345511/ui
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-serv
+spec:
+  selector:
+    app: ui-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

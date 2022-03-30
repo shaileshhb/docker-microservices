@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-depl
+  labels:
+    app: query-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: query-app
+  template:
+    metadata:
+      name: query-pod
+      labels:
+        app: query-app
+    spec:
+      containers:
+        - name: query-pod
+          image: us.gcr.io/kubernetes-demo-345511/query
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-serv
+spec:
+  selector:
+    app: query-app
+  ports:
+    - protocol: TCP
+      port: 4003
+      targetPort: 4003

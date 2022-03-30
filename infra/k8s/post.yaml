@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-depl
+  labels:
+    app: post-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post-app
+  template:
+    metadata:
+      name: post-pod
+      labels:
+        app: post-app
+    spec:
+      containers:
+        - name: post-pod
+          image: us.gcr.io/kubernetes-demo-345511/blogpost
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-serv
+spec:
+  selector:
+    app: post-app
+  ports:
+    - protocol: TCP
+      port: 4001
+      targetPort: 4001

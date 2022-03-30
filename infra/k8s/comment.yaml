@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comment-depl
+  labels:
+    app: comment-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comment-app
+  template:
+    metadata:
+      name: comment-pod
+      labels:
+        app: comment-app
+    spec:
+      containers:
+        - name: comment-pod
+          image: us.gcr.io/kubernetes-demo-345511/blogcomment
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comment-serv
+spec:
+  selector:
+    app: comment-app
+  ports:
+    - protocol: TCP
+      port: 4002
+      targetPort: 4002

@@ -1,0 +1,50 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  googleCloudBuild:
+    projectId: kubernetes-demo-345511
+  artifacts:
+    - image: us.gcr.io/kubernetes-demo-345511/blogpost
+      context: blogpost # path to find dockerfile
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "*.js" # specifing which file to be watched for changes
+    - image: us.gcr.io/kubernetes-demo-345511/blogcomment
+      context: blogcomment # path to find dockerfile
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "*.js" # specifing which file to be watched for changes
+    - image: us.gcr.io/kubernetes-demo-345511/query
+      context: QueryService # path to find dockerfile
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "*.js" # specifing which file to be watched for changes
+    - image: us.gcr.io/kubernetes-demo-345511/eventbus
+      context: eventbus # path to find dockerfile
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "*.js" # specifing which file to be watched for changes
+    - image: us.gcr.io/kubernetes-demo-345511/ui
+      context: ui # path to find dockerfile
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "*.js" # specifing which file to be watched for changes

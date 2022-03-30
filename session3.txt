@@ -1,0 +1,4 @@
+C:\Users\91797\Desktop\Swabhav\MIcroserv\eventbus>npm init -y // to create package.json
+C:\Users\91797\Desktop\Swabhav\MIcroserv\eventbus>npm install express cors axios nodemon //done same as last session
+"start": "nodemon index.js" in package.json
+create index.json

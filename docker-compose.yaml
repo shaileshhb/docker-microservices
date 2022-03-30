@@ -1,0 +1,16 @@
+version: "3"
+services:
+  post:
+    container_name: post
+    build: 
+      dockerfile: Dockerfile
+      context: ./blogpost
+    ports:
+      - 4001:4001
+  comments:
+    container_name: comments
+    build: 
+      dockerfile: Dockerfile
+      context: ./blogpost
+    ports:
+      - 4001:4001
