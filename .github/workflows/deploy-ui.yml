@@ -28,6 +28,6 @@ jobs:
       - uses: google-github-actions/get-gke-credentials@v0
         with:
           cluster_name: demo-cluster-1
-          location: us-east1-a
+          location: asia-east1-a
       # Runs a set of commands using the runners shell
       - run: kubectl delete deployment ui && kubectl apply -f ./infra/k8s/ui.yaml #here
