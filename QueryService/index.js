@@ -47,5 +47,5 @@ app.post("/eventbus/event/listener",(req,resp)=>{
             handleEvent(e.type,e.data);
         }
      }
-     console.log("listening at port 4003...")
+     console.log("listening at port 4003")
  })
